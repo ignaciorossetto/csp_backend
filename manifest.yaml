@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: csp-kub
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: csp-kub
+  template:
+    metadata:
+      labels:
+        app: csp-kub
+    spec:
+      containers:
+      - name: csp-mysql-container
+        image: ignacio1993/mysql:0.0.1
+        ports:
+        - containerPort: 80
