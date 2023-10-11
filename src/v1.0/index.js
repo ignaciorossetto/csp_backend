@@ -5,27 +5,18 @@ const indexRoutes = require('./routes/index');
 const badRequest = require('./middlewares/badRequest.middleware');
 const sequelize = require('./database/db');
 const app = express();
-const Category = require('./database/models/Category')
-const Project = require('./database/models/Project')
-const Quote = require('./database/models/Quote')
-const Supplier = require('./database/models/Supplier')
-const Supply = require('./database/models/Supply')
-const User = require('./database/models/User')
-const cors = require('cors')
+const cors = require('cors');
+const corsOptions = require('./utils/corsConf');
 
 
 //middlewares
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
-app.use(cors('*'))
+app.use(cors(corsOptions))
 
 //routes
 app.use('/api/v1', indexRoutes)
-app.use('/', (req, res, next) =>{
-    res.json({
-        status: 'OK'
-    })
-})
+
 //error middleware
 app.use(errorHandler)
 
