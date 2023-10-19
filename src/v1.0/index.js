@@ -30,6 +30,6 @@ sequelize.sync({alter: true}).then(()=> {
         console.log(`Listening on port ${config.port}`);
     })
 }).catch((error)=> {
-    console.log(error)
-    process.exit()
+    console.error(error)
+    process.exit(1)
 })

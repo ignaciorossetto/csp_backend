@@ -1,5 +1,6 @@
 const sequelize = require("../db");
-const {DataTypes} = require('sequelize')
+const {DataTypes} = require('sequelize');
+const UserType = require("./UserType");
 
 const User = sequelize.define("User", {
   id_user: {
@@ -35,6 +36,20 @@ const User = sequelize.define("User", {
   address: {
     type: DataTypes.STRING,
   },
+  active: {
+    type: DataTypes.BOOLEAN,
+    defaultValue: false
+  },
+  
 });
+
+UserType.hasMany(User, {
+  foreignKey: 'id_userType',
+})
+User.belongsTo(UserType, {
+  foreignKey: 'id_userType',
+})
+
+
 
 module.exports = User;
